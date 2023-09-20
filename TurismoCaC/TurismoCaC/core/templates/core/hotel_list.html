@@ -1,0 +1,25 @@
+{% extends "core/base_project.html" %}
+{% load static %}
+{% block extra_css%}
+    <link rel="stylesheet" href="{% static 'core/css/index.css' %}">
+{%endblock%}
+
+{% block title %}Reservas{% endblock %}
+{% block section_title %}Hotel List{% endblock %}
+{% block content %}
+    <ul>
+        {% for indv_hotel in hotel_list %}
+            <li>
+                <p>{{ indv_hotel | title }}</p>
+            </li>
+        {% empty %}
+            <p>Actualmente no tenemos hoteles disponibles para reservas</p>
+        {% endfor %}
+    </ul>
+
+    {% if hotel_cant > 0 %}
+        <p>Te ofrecemos {{hotel_cant}} en los cuales puedes empezar a reservar el dia de hoy</p>
+    {% else %}
+        <p>Ups! Ahora mismo no contamos con Hoteles disponibles para reservas</p>
+    {% endif %}
+{% endblock %}
