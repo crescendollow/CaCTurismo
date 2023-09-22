@@ -9,14 +9,15 @@ def hotel_list(request):
 
     hotelOne = {
     'name': 'Hotel Pollito',
+    'description' : 'Este hotel es mu lindo, muy hermoso de hecho.',
     'direction': 'Calle Falsa 123', 
-    'start': '5'
+    'stars': '5'
     }
     
     hotelTwo = {
     'name': 'Hotel Vagoneta',
     'direction': 'Calle Verdadera 123', 
-    'start': '2'
+    'stars': '2'
     }
 
     list = [
