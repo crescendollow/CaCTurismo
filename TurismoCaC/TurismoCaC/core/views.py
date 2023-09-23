@@ -31,3 +31,10 @@ def hotel_list(request):
     }
 
     return render(request, 'core/hotel_list.html', context)
+
+def usuario_informacion(request):
+    context = {}
+
+
+
+    return render(request, 'usuario_informacion.html', context)
