@@ -3,7 +3,10 @@ from django.http import HttpResponse
 from datetime import datetime
 
 def index(request):
-    return render(request, "core/index.html")
+    context = {
+        'fecha': datetime.now(),
+    }
+    return render(request, "core/index.html", context)
 
 def hotel_list(request):
 
