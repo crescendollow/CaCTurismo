@@ -5,11 +5,19 @@
     padding: 0;
 }
 
+.fondo{
+    background-image: url(/core/static/core/media/fondo.jpg);
+}
+
 body {
     font-family: Arial, sans-serif;
-    
-    background-color: #f0f0f0;
+    background-color: #50db2e;
+    background-image: url(/core/static/core/media/fondo.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
+
 
 header {
     background-color: #333;
