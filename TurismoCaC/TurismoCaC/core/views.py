@@ -163,17 +163,14 @@ def crearreservas():
 
     
     
-def listado_reservas(request, dia, mes, anio):
+def listado_reservas_fecha(request, dia, mes, anio):
 
     fechabuscar = dia+'/'+mes+'/'+anio
     list = crearreservas()
-    
-    print(fechabuscar)
     listafinal = []
     for lista in list:
         if lista["fechareserva"] == fechabuscar:
             listafinal.append(lista)
-
     context = {
         'reserva_lista': listafinal,
         'reserva_cant': len(listafinal),
@@ -181,9 +178,7 @@ def listado_reservas(request, dia, mes, anio):
     return render(request, 'core/listado_reservas.html', context)
 
 def listado_reservas(request):
-
     list = crearreservas()
-    
     context = {
         'reserva_lista': list,
         'reserva_cant': len(list),

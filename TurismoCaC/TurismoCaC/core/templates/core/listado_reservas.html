@@ -29,12 +29,7 @@
             </div>
         </div>
         {% empty %}
-            <p>Actualmente no tenemos hoteles disponibles para reservas</p>
+            <p>No hay Hoteles reservados para esta Fecha</p>
         {% endfor %}
-
-    {% if reserva_cant == 0 %}
-        <p>Ups! Ahora mismo no contamos con Hoteles disponibles para reservas</p>
-    {% endif %}
-
     
 {% endblock %}
