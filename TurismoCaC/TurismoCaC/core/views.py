@@ -33,8 +33,15 @@ def hotel_list(request):
     return render(request, 'core/hotel_list.html', context)
 
 def usuario_informacion(request):
-    context = {}
+    context = {
+        'nombre_usuario':'Sofia',
+        'apellido_usuario':'Perez',
+        'edad_usuario':'18',
+        'email_usuario':'sofiap@email.com',
+        'telefono_usuario':'343521223',
+        'direccion_usuario':'Av Perez 123',
+    }
 
 
 
-    return render(request, 'usuario_informacion.html', context)
+    return render(request, 'core/usuario_informacion.html', context)

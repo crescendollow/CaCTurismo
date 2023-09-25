@@ -1,33 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listado de alumnos</title>
-</head>
-<body>
-    <header>
-        <h1>Bienvenido {{nombre_usuario}} al aula virtual 2.0</h1>
-        <h2>Listado de alumnos</h2>
-        <nav>
-            <ul>
-                <li><a href="http://127.0.0.1:8000/aula_virtual/">Home</a></li>
-                <li><a href="http://127.0.0.1:8000/aula_virtual/alumnos/listado">Listado de alumnos</a></li>
-                <li><a href="http://127.0.0.1:8000/aula_virtual/alumnos/historico/2017/">Historico de alumnos</a></li>
-                <li></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <h2>2023</h2>
-        <ul>
-            <li>
-                <p>Nombre:</p>
-                <p>Apellido:</p>
-                <p>Curso:</p>
-            </li>
-        </ul>
-    </main>
-    
-</body>
-</html>
+{% extends "core/base_project.html" %}
+{% load static %}
+{% block extra_css%}
+    <link rel="stylesheet" href="{% static 'core/css/index.css' %}">
+{%endblock%}
+{% block title %}Usuario{% endblock %}
+{% block section_title %}Información personal{% endblock %}
+{% block content %}
+    <ul>
+        <li>
+            <h2>Perfil de usuario</h2>
+            <p>Nombre: {{nombre_usuario}}</p>
+            <p>Apellido: {{apellido_usuario}}</p>
+            <p>Edad: {{edad_usuario}}</p>
+
+            <h2>Informacion de contacto</h2>
+            <p>Email: {{email_usuario}}</p>
+            <p>Telefono: {{telefono_usuario}}</p>
+            <p>Dirección: {{direccion_usuario}}</p>
+
+            <h2>Historial de reservas</h2>
+        </li>
+    </ul>
+{% endblock %}
