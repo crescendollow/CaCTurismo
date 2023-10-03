@@ -1,6 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from datetime import datetime
+from django.contrib import messages
+from django.urls import reverse
+from .forms import ClienteForm 
+
 
 def index(request):
     context = {
@@ -9,7 +13,6 @@ def index(request):
     return render(request, "core/index.html", context)
 
 def hotel_list(request):
-
     hotelOne = {
     'name': 'Hotel Pollito',
     'description' : 'Este hotel es mu lindo, muy hermoso de hecho.',
@@ -22,19 +25,17 @@ def hotel_list(request):
     'direction': 'Calle Verdadera 123', 
     'stars': '2'
     }
-
     list = [
         hotelOne,
         hotelTwo
     ]
-
     context = {
         'hotel_list': list,
         'hotel_cant': len(list),
     }
-
     return render(request, 'core/hotel_list.html', context)
 
+# Crear Reservas para Ejemplos
 def crearreservas():
     reserva1 = {
         'name': 'Hotel Pollito',
@@ -47,7 +48,6 @@ def crearreservas():
         'numreserva' : 'AH67WR01',
         'cantpersona' : 4
     }
-    
     reserva2 = {
         'name': 'Hotel Vagoneta',
         'cliente' : 'Carlos Lopez',
@@ -59,7 +59,6 @@ def crearreservas():
         'numreserva' : 'AH6SWP87',
         'cantpersona' : 2    
         }
-
     reserva3 = {
         'name': 'Hotel Vagoneta',
         'cliente' : 'Carlos Lopez',
@@ -71,7 +70,6 @@ def crearreservas():
         'numreserva' : 'AHGK72AB',
         'cantpersona' : 4    
         }
-
     reserva4 = {
     'name': 'Hotel Vagoneta',
     'cliente' : 'Miguel Angulo',
@@ -83,7 +81,6 @@ def crearreservas():
     'numreserva' : 'AH354PAB',
     'cantpersona' : 2    
     }
-
     reserva5 = {
     'name': 'Hotel Vagoneta',
     'cliente' : 'Ana Cameron',
@@ -95,7 +92,6 @@ def crearreservas():
     'numreserva' : 'A29HQY12',
     'cantpersona' : 3    
     }
-
     reserva6 = {
     'name': 'Hotel Pollito',
     'cliente' : 'Jose Camacho',
@@ -107,7 +103,6 @@ def crearreservas():
     'numreserva' : 'LK43EW9G',
     'cantpersona' : 2    
     }
-
     reserva7 = {
     'name': 'Hotel Pollito',
     'cliente' : 'ELena Urdaneta',
@@ -119,7 +114,6 @@ def crearreservas():
     'numreserva' : 'KS76HS09',
     'cantpersona' : 6    
     }
-
     reserva8 = {
     'name': 'Hotel Vagoneta',
     'cliente' : 'Ruben Dario',
@@ -131,7 +125,6 @@ def crearreservas():
     'numreserva' : 'KKO908AB',
     'cantpersona' : 1    
     }
-
     reserva9 = {
     'name': 'Hotel Pollito',
     'cliente' : 'Elsa Nuñez',
@@ -143,7 +136,6 @@ def crearreservas():
     'numreserva' : 'SHU87R5G',
     'cantpersona' : 2    
     }
-
     reserva10 = {
     'name': 'Hotel Pollito',
     'cliente' : 'Isabel Socorro',
@@ -160,11 +152,9 @@ def crearreservas():
         reserva7, reserva8, reserva9, reserva10 
     ]
     return(list)
-
     
-    
+# Listado Reservas por Fecha    
 def listado_reservas_fecha(request, dia, mes, anio):
-
     fechabuscar = dia+'/'+mes+'/'+anio
     list = crearreservas()
     listafinal = []
@@ -177,6 +167,7 @@ def listado_reservas_fecha(request, dia, mes, anio):
     }
     return render(request, 'core/listado_reservas.html', context)
 
+# Listado Reservas
 def listado_reservas(request):
     list = crearreservas()
     context = {
@@ -184,3 +175,18 @@ def listado_reservas(request):
         'reserva_cant': len(list),
     }
     return render(request, 'core/listado_reservas.html', context)
+
+# Clientes
+def cliente(request):
+    if request.method == "POST":
+        formulario = ClienteForm(request.POST)
+        if formulario.is_valid():
+            messages.info(request, "Consulta enviada con éxito")
+            return redirect(reverse("index"))
+    else:
+        # GET
+        formulario = ClienteForm()
+    context = {
+        'cliente_form': formulario
+    }
+    return render(request, "core/cliente.html", context)
