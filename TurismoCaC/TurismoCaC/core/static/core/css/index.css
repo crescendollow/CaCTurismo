@@ -3,13 +3,23 @@
 *{
     font-family: 'Raleway', sans-serif;
     font-family: 'Roboto', sans-serif;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+    padding: 0;
 }
 
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f0f0f0;
+    /* background-color: #50db2e; */
+}
+
+main {
+    background-image: url(https://www.hotel-argentino.com.ar/wp-content/uploads/2019/04/carr00-1.png);
+    background-size:cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 90vh;
 }
 
 header {

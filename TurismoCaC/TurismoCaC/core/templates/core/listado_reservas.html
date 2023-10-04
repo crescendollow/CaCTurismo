@@ -1,0 +1,35 @@
+{% extends "core/base_project.html" %}
+{% load static %}
+{% block extra_css%}
+    <link rel="stylesheet" href="{% static 'core/css/index.css' %}">
+{%endblock%}
+
+{% block title %}Reservas{% endblock %}
+{% block section_title %}Lista de reservas{% endblock %}
+{% block content %}
+        {% for indv_reserva in reserva_lista %}
+        <div class="card mb-3" style="max-width: 540px; display: inline-block; vertical-align: top; margin-top: 20px; margin-left: 20px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="{% static 'core/media/'|add:indv_reserva.name|add:'.jpeg' %}" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{ indv_reserva.name }}</h5>
+                    <p class="card-text">Cliente: {{ indv_reserva.cliente }}</p>
+                    <p class="card-text">Fecha Inicio de Reserva: {{ indv_reserva.fechaini }}</p>
+                    <p class="card-text">Fecha Fin de Reserva: {{ indv_reserva.fechafin }}</p>
+                    <p class="card-text">Tipo de Reserva: {{ indv_reserva.tipo }}</p>
+                    <p class="card-text">Fecha Reservacion: {{ indv_reserva.fechareserva }}</p>
+                    <p class="card-text">Desayuno incluido: {{ indv_reserva.desayuno }}</p>
+                    <h4 class="card-text" style = "color: blue">Número de reserva: {{ indv_reserva.numreserva }}</h4>
+                    <p class="card-text">Cantidad de personas: {{ indv_reserva.cantpersona }}</p>
+                </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+            <p>No hay Hoteles reservados para esta Fecha</p>
+        {% endfor %}
+    
+{% endblock %}
