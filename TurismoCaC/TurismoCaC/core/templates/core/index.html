@@ -9,7 +9,7 @@
 {% block section_title %}{% endblock %}
 {% block content %}
     <h2>Bienvenido a nuestra plataforma de gestión hotelera</h2>
-    {% filter lower %}
+    {% filter upper %}
     <p>Día de la fecha: {{ fecha }}</p>
     {% endfilter %}
 {% endblock %}
