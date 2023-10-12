@@ -1,0 +1,36 @@
+{% extends "core/base_project.html" %}
+{% load static %}
+{% block extra_css%}
+    <link rel="stylesheet" href="{% static 'core/css/index.css' %}">
+{%endblock%}
+
+{% block title %}Reservas{% endblock %}
+{% block section_title %}Hotel List{% endblock %}
+{% block content %}
+        {% for indv_hotel in hotel_list %}
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="{% static 'core/media/'|add:indv_hotel.name|add:'.jpeg' %}" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{ indv_hotel.name }}</h5>
+                    <p class="card-text">Descripcion del Hotel: {{ indv_hotel.description }}</p>
+                    <p class="card-text"><small class="text-body-secondary">Este hotel tiene una reputacion de {{ indv_hotel.stars}} estrellas de categoria</small></p>
+                </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+            <p>Actualmente no tenemos hoteles disponibles para reservas</p>
+        {% endfor %}
+
+    {% if hotel_cant > 0 %}
+        <p>Te ofrecemos {{hotel_cant}} en los cuales puedes empezar a reservar el dia de hoy</p>
+    {% else %}
+        <p>Ups! Ahora mismo no contamos con Hoteles disponibles para reservas</p>
+    {% endif %}
+
+    
+{% endblock %}
