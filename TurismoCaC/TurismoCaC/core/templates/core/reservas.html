@@ -1,0 +1,21 @@
+{% extends "core/base_project.html" %}
+{% load static %}
+
+{% block extra_css%}
+    <link rel="stylesheet" href="{% static 'core/css/reservas.css' %}">
+{%endblock%}
+
+{% block title %}Envianos tus comentarios{% endblock %}
+{% block section_title %}Completá el siguiente formulario{% endblock %}
+{% block content %}
+
+    <div class="formulario_container">
+        <div class="formulario">
+            <form method="post" action="{% url 'reservas' %}">
+                {% csrf_token %}
+                {{ Reservas_form.as_p }}
+                <input class="btn btn-primary" type="submit">
+            </form>    
+        </div>
+    </div>
+{% endblock %}
