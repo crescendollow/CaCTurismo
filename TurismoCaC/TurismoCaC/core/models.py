@@ -35,9 +35,12 @@ class Hotel(models.Model):
     nombre = models.CharField(max_length=150, verbose_name="Nombre")
     descripcion = models.CharField(max_length=1000, null=True, verbose_name="Descripcion del Hotel")
     estrellas = models.IntegerField(verbose_name="estrellas")
+    #usuarios = models.ManyToManyField(Usuario, through="Reserva")
+
 class Reserva(models.Model):
     nombre = models.CharField(max_length=150, verbose_name="Nombre")
     fecha_inicio = models.DateField(verbose_name="Fecha de inicio")
     fecha_finalizacion = models.DateField(verbose_name="Fecha de finalizacion")
-    cantidad_clases = models.IntegerField(verbose_name="Cantidad de clases")
+    cantidad_personas = models.IntegerField(verbose_name="Cantidad de Personas", default = 1)
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
+    #usuarios = models.ForeignKey(Usuario, default = " ", on_delete=models.CASCADE)

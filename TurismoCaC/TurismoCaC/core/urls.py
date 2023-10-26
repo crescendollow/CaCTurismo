@@ -10,7 +10,6 @@ urlpatterns = [
     path('reservas', views.reservas, name="reservas"),
 
     path('alta/reservas', views.ReservasCreateView.as_view(), name="reservas_alta"),
-
     path('alta/listado/reservas', views.ReservasListView.as_view(), name="reservas_listado"),
     
 ]
