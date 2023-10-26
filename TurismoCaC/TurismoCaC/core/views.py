@@ -3,8 +3,10 @@ from django.http import HttpResponse
 from datetime import datetime
 from django.contrib import messages
 from django.urls import reverse
-from .forms import ClienteForm 
-
+from .forms import ClienteForm
+from django.views.generic.edit import CreateView
+from django.views.generic.list import ListView
+from .models import Reserva 
 
 def index(request):
     context = {
@@ -34,7 +36,6 @@ def hotel_list(request):
         'hotel_cant': len(list),
     }
     return render(request, 'core/hotel_list.html', context)
-
 # Crear Reservas para Ejemplos
 def crearreservas():
     reserva1 = {
@@ -152,7 +153,6 @@ def crearreservas():
         reserva7, reserva8, reserva9, reserva10 
     ]
     return(list)
-    
 # Listado Reservas por Fecha    
 def listado_reservas_fecha(request, dia, mes, anio):
     fechabuscar = dia+'/'+mes+'/'+anio
@@ -166,7 +166,6 @@ def listado_reservas_fecha(request, dia, mes, anio):
         'reserva_cant': len(listafinal),
     }
     return render(request, 'core/listado_reservas.html', context)
-
 # Listado Reservas
 def listado_reservas(request):
     list = crearreservas()
@@ -175,7 +174,6 @@ def listado_reservas(request):
         'reserva_cant': len(list),
     }
     return render(request, 'core/listado_reservas.html', context)
-
 # Clientes
 def cliente(request):
     if request.method == "POST":
@@ -190,3 +188,13 @@ def cliente(request):
         'cliente_form': formulario
     }
     return render(request, "core/cliente.html", context)
+class ReservaCreateView(CreateView):
+    model = Reserva
+    template_name = 'core/listado_reservas.html'
+    success_url = 'listado'
+    fields = '__all__'
+class ReservaListView(ListView):
+    model = Reserva
+    context_object_name = 'listado_reservas'
+    template_name = 'core/listado_reservas.html'
+    ordering = ['fecha_inicio']
