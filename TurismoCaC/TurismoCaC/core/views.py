@@ -3,7 +3,10 @@ from django.http import HttpResponse
 from datetime import datetime
 from django.contrib import messages
 from django.urls import reverse
-from .forms import ClienteForm, ReservasForm
+from .forms import ClienteForm, ReservasForm, AltaReservasModelForm
+from .models import Reserva
+from django.views.generic.edit import CreateView
+from django.views.generic.list import ListView
 
 
 def index(request):
@@ -40,139 +43,139 @@ def hotel_list(request):
     }
     return render(request, 'core/hotel_list.html', context)
 
-# Crear Reservas para Ejemplos
+# Crear Reservas para Ejemplos 
 def crearreservas():
-    reserva1 = {
-         'name': 'Hotel Pollito',
-         'cliente' : 'ALberto Ramirez',
-         'fechaini' : '01/12/2023',
-         'fechafin': '05/12/2023', 
-         'fechareserva' : '23/09/2023',
-         'desayuno': 'Si',
-         'tipo' : 'Basica',
-         'numreserva' : 'AH67WR01',
-         'cantpersona' : 4
-     }
-    reserva2 = {
-         'name': 'Hotel Vagoneta',
-         'cliente' : 'Carlos Lopez',
-         'fechaini' : '02/12/2023',
-         'fechafin': '03/12/2023', 
-         'fechareserva' : '23/09/2023',
-         'desayuno': 'No',
-         'tipo' : 'Premium',
-         'numreserva' : 'AH6SWP87',
-         'cantpersona' : 2    
-         }
-    reserva3 = {
-         'name': 'Hotel Vagoneta',
-         'cliente' : 'Carlos Lopez',
-         'fechaini' : '10/12/2023',
-         'fechafin': '15/12/2023', 
-         'fechareserva' : '24/09/2024',
-         'desayuno': 'Si',
-         'tipo' : 'Premium',
-         'numreserva' : 'AHGK72AB',
-         'cantpersona' : 4    
-         }
-    reserva4 = {
-     'name': 'Hotel Vagoneta',
-     'cliente' : 'Miguel Angulo',
-     'fechaini' : '10/11/2023',
-     'fechafin': '15/11/2023', 
-     'fechareserva' : '24/09/2024',
-     'desayuno': 'No',
-     'tipo' : 'Premium',
-     'numreserva' : 'AH354PAB',
-     'cantpersona' : 2    
-     }
-    reserva5 = {
-     'name': 'Hotel Vagoneta',
-     'cliente' : 'Ana Cameron',
-     'fechaini' : '24/11/2023',
-     'fechafin': '25/11/2023', 
-     'fechareserva' : '24/09/2024',
-     'desayuno': 'Si',
-     'tipo' : 'Basica',
-     'numreserva' : 'A29HQY12',
-     'cantpersona' : 3    
-     }
-    reserva6 = {
-     'name': 'Hotel Pollito',
-     'cliente' : 'Jose Camacho',
-     'fechaini' : '17/10/2023',
-     'fechafin': '20/10/2023', 
-     'fechareserva' : '24/09/2024',
-     'desayuno': 'Si',
-     'tipo' : 'Premium',
-     'numreserva' : 'LK43EW9G',
-     'cantpersona' : 2    
-     }
-    reserva7 = {
-     'name': 'Hotel Pollito',
-     'cliente' : 'ELena Urdaneta',
-     'fechaini' : '02/10/2023',
-     'fechafin': '10/10/2023', 
-     'fechareserva' : '24/09/2024',
-     'desayuno': 'Si',
-     'tipo' : 'Basica',
-     'numreserva' : 'KS76HS09',
-     'cantpersona' : 6    
-     }
-    reserva8 = {
-     'name': 'Hotel Vagoneta',
-     'cliente' : 'Ruben Dario',
-     'fechaini' : '22/12/2023',
-     'fechafin': '23/12/2023', 
-     'fechareserva' : '23/09/2023',
-     'desayuno': 'Si',
-     'tipo' : 'Premium',
-     'numreserva' : 'KKO908AB',
-     'cantpersona' : 1    
-     }
-    reserva9 = {
-     'name': 'Hotel Pollito',
-     'cliente' : 'Elsa Nuñez',
-     'fechaini' : '09/12/2023',
-     'fechafin': '15/12/2023', 
-     'fechareserva' : '24/09/2024',
-     'desayuno': 'No',
-     'tipo' : 'Premium',
-     'numreserva' : 'SHU87R5G',
-     'cantpersona' : 2    
-     }
-    reserva10 = {
-     'name': 'Hotel Pollito',
-     'cliente' : 'Isabel Socorro',
-     'fechaini' : '26/12/2023',
-     'fechafin': '29/12/2023', 
-     'fechareserva' : '23/09/2023',
-     'desayuno': 'No',
-     'tipo' : 'Basico',
-     'numreserva' : 'AHH098AB',
-     'cantpersona' : 5    
-     }
-    list = [
-         reserva1, reserva2, reserva3, reserva4, reserva5, reserva6,
-         reserva7, reserva8, reserva9, reserva10 
-     ]
-    return(list)
+     reserva1 = {
+          'name': 'Hotel Pollito',
+          'cliente' : 'ALberto Ramirez',
+          'fechaini' : '01/12/2023',
+          'fechafin': '05/12/2023', 
+          'fechareserva' : '23/09/2023',
+          'desayuno': 'Si',
+          'tipo' : 'Basica',
+          'numreserva' : 'AH67WR01',
+          'cantpersona' : 4
+      }
+     reserva2 = {
+          'name': 'Hotel Vagoneta',
+          'cliente' : 'Carlos Lopez',
+          'fechaini' : '02/12/2023',
+          'fechafin': '03/12/2023', 
+          'fechareserva' : '23/09/2023',
+          'desayuno': 'No',
+          'tipo' : 'Premium',
+          'numreserva' : 'AH6SWP87',
+          'cantpersona' : 2    
+          }
+     reserva3 = {
+          'name': 'Hotel Vagoneta',
+          'cliente' : 'Carlos Lopez',
+          'fechaini' : '10/12/2023',
+          'fechafin': '15/12/2023', 
+          'fechareserva' : '24/09/2024',
+          'desayuno': 'Si',
+          'tipo' : 'Premium',
+          'numreserva' : 'AHGK72AB',
+          'cantpersona' : 4    
+          }
+     reserva4 = {
+      'name': 'Hotel Vagoneta',
+      'cliente' : 'Miguel Angulo',
+      'fechaini' : '10/11/2023',
+      'fechafin': '15/11/2023', 
+      'fechareserva' : '24/09/2024',
+      'desayuno': 'No',
+      'tipo' : 'Premium',
+      'numreserva' : 'AH354PAB',
+      'cantpersona' : 2    
+      }
+     reserva5 = {
+      'name': 'Hotel Vagoneta',
+      'cliente' : 'Ana Cameron',
+      'fechaini' : '24/11/2023',
+      'fechafin': '25/11/2023', 
+      'fechareserva' : '24/09/2024',
+      'desayuno': 'Si',
+      'tipo' : 'Basica',
+      'numreserva' : 'A29HQY12',
+      'cantpersona' : 3    
+      }
+     reserva6 = {
+      'name': 'Hotel Pollito',
+      'cliente' : 'Jose Camacho',
+      'fechaini' : '17/10/2023',
+      'fechafin': '20/10/2023', 
+      'fechareserva' : '24/09/2024',
+      'desayuno': 'Si',
+      'tipo' : 'Premium',
+      'numreserva' : 'LK43EW9G',
+      'cantpersona' : 2    
+      }
+     reserva7 = {
+      'name': 'Hotel Pollito',
+      'cliente' : 'ELena Urdaneta',
+      'fechaini' : '02/10/2023',
+      'fechafin': '10/10/2023', 
+      'fechareserva' : '24/09/2024',
+      'desayuno': 'Si',
+      'tipo' : 'Basica',
+      'numreserva' : 'KS76HS09',
+      'cantpersona' : 6    
+      }
+     reserva8 = {
+      'name': 'Hotel Vagoneta',
+      'cliente' : 'Ruben Dario',
+      'fechaini' : '22/12/2023',
+      'fechafin': '23/12/2023', 
+      'fechareserva' : '23/09/2023',
+      'desayuno': 'Si',
+      'tipo' : 'Premium',
+      'numreserva' : 'KKO908AB',
+      'cantpersona' : 1    
+      }
+     reserva9 = {
+      'name': 'Hotel Pollito',
+      'cliente' : 'Elsa Nuñez',
+      'fechaini' : '09/12/2023',
+      'fechafin': '15/12/2023', 
+      'fechareserva' : '24/09/2024',
+      'desayuno': 'No',
+      'tipo' : 'Premium',
+      'numreserva' : 'SHU87R5G',
+      'cantpersona' : 2    
+      }
+     reserva10 = {
+      'name': 'Hotel Pollito',
+      'cliente' : 'Isabel Socorro',
+      'fechaini' : '26/12/2023',
+      'fechafin': '29/12/2023', 
+      'fechareserva' : '23/09/2023',
+      'desayuno': 'No',
+      'tipo' : 'Basico',
+      'numreserva' : 'AHH098AB',
+      'cantpersona' : 5    
+      }
+     list = [
+          reserva1, reserva2, reserva3, reserva4, reserva5, reserva6,
+          reserva7, reserva8, reserva9, reserva10 
+      ]
+     return(list)
 
-# def reservas(request):
-#     if request.method == "POST":
-#         # Instanciamos un formulario con datos
-#         formulario = ReservasForm(request.POST)
-#         # Validarlo
-#         if formulario.is_valid():
-#             # Dar de alta la info
-#             messages.info(request, "Reserva enviada con éxito")
-#             return redirect(reverse("home"))
-#     else: # GET
-#         formulario = ReservasForm()
-#     context = {
-#         'reservas_form': formulario
-#     }
-#     return render(request, "core/reservas.html", context)
+def reservas(request):
+     if request.method == "POST":
+         # Instanciamos un formulario con datos
+         formulario = ReservasForm(request.POST)
+         # Validarlo
+         if formulario.is_valid():
+             # Dar de alta la info
+             messages.info(request, "Reserva enviada con éxito")
+             return redirect(reverse("home"))
+     else: # GET
+         formulario = ReservasForm()
+     context = {
+         'reservas_form': formulario
+     }
+     return render(request, "core/reservas.html", context)
 
 def reservas(request):
     if request.method == "POST":
@@ -255,4 +258,18 @@ def cliente(request):
         'cliente_form': formulario
     }
     return render(request, "core/cliente.html", context)
+
+class ReservasCreateView(CreateView):
+    model = Reserva
+    #context_object_name = 'alta_docente_form'
+    template_name = 'core/reservas_alta.html'
+    success_url = 'listado/reservas'
+    # form_class = AltaDocenteModelForm
+    fields = '__all__'
+
+class ReservasListView(ListView):
+    model = Reserva
+    context_object_name = 'listado_reservas'
+    template_name = 'core/reservas_listado.html'
+    ordering = ['fecha_inicio']
 

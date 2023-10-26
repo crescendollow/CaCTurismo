@@ -1,0 +1,29 @@
+{% extends "core/base_project.html" %}
+{% load static %}
+{% block extra_css%}
+    <link rel="stylesheet" href="{% static 'core/css/reservas_listado.css' %}">
+{%endblock%}
+
+{% block title %}Listado Reservas{% endblock %}
+{% block section_title %}Listado Reservas{% endblock %}
+{% block content %}
+    <h2>2023</h2>
+    <ul>
+        {% for nombre_reservas in listado_reservas %}
+            <li>
+                <p>{{ nombre_reservas.nombre | title }}</p>
+                <p>{{ nombre_reservas.fecha_inicio}}</p>
+                <p>{{ nombre_reservas.fecha_finalizacion}}</p>
+                
+            </li>
+        {% empty %}
+            <p>Sin Reservas registrados</p>
+        {% endfor %}
+    </ul>
+
+    <!-- {% if listado_reservas.count > 0 %}
+        <p>cantidad de d registrados: {{listado_docentes.count}}</p>
+    {% else %}
+        <p>No hay docentes registrados</p>
+    {% endif %} -->
+{% endblock %}

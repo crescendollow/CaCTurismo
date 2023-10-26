@@ -8,5 +8,9 @@ urlpatterns = [
     path('listado/reservas', views.listado_reservas, name='listado_reservas'),
     path('cliente', views.cliente, name="cliente"),
     path('reservas', views.reservas, name="reservas"),
+
+    path('alta/reservas', views.ReservasCreateView.as_view(), name="reservas_alta"),
+
+    path('alta/listado/reservas', views.ReservasListView.as_view(), name="reservas_listado"),
     
 ]
