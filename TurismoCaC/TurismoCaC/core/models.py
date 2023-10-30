@@ -1,5 +1,8 @@
 from django.db import models
 from django.core.exceptions import ValidationError
+from django.utils import timezone
+import random
+
 
 # Create your models here.
 
@@ -30,17 +33,28 @@ class Persona(models.Model):
     def _str_(self):
         return self.nombre_completo()
 class Usuario(Persona):
-    username = models.CharField(max_length=100, verbose_name="Username")
+    username = models.CharField(max_length=15, verbose_name="Username")
+    def __str__(self):
+        return self.username
+    
 class Hotel(models.Model):
-    nombre = models.CharField(max_length=150, verbose_name="Nombre")
+    nombre = models.CharField(max_length=150, verbose_name="Nombre:")
     descripcion = models.CharField(max_length=1000, null=True, verbose_name="Descripcion del Hotel")
-    estrellas = models.IntegerField(verbose_name="estrellas")
-    #usuarios = models.ManyToManyField(Usuario, through="Reserva")
+    estrellas = models.IntegerField(verbose_name="Estrellas:")
+    desayuno = models.BooleanField(verbose_name="Desayuno:", default=False)
+    fecha_reserva = models.DateField(default=timezone.now)
+    numero_reserva = models.IntegerField(default=random.randint(100000, 999999))
+
+    def __str__(self):
+        return self.nombre
 
 class Reserva(models.Model):
-    nombre = models.CharField(max_length=150, verbose_name="Nombre")
-    fecha_inicio = models.DateField(verbose_name="Fecha de inicio")
-    fecha_finalizacion = models.DateField(verbose_name="Fecha de finalizacion")
-    cantidad_personas = models.IntegerField(verbose_name="Cantidad de Personas", default = 1)
+    usuarios = models.ManyToManyField(Usuario, verbose_name="Usuario:")    
+    nombre = models.CharField(max_length=150, verbose_name="Nombre:")
+    fecha_inicio = models.DateField(verbose_name="Fecha de inicio:")
+    fecha_salida = models.DateField(verbose_name="Fecha de Salida:",default = "")
+    cantidad_personas = models.IntegerField(verbose_name="Cantidad de Personas:", default = 1)
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
-    #usuarios = models.ForeignKey(Usuario, default = " ", on_delete=models.CASCADE)
+
+
+

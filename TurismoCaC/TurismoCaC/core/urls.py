@@ -11,5 +11,6 @@ urlpatterns = [
 
     path('alta/reservas', views.ReservasCreateView.as_view(), name="reservas_alta"),
     path('alta/listado/reservas', views.ReservasListView.as_view(), name="reservas_listado"),
+    path('alta/hotel', views.HotelesCreateView.as_view(), name="hotel_alta"),
     
 ]

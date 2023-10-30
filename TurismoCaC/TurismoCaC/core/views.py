@@ -273,3 +273,12 @@ class ReservasListView(ListView):
     template_name = 'core/reservas_listado.html'
     ordering = ['fecha_inicio']
 
+class HotelesCreateView(CreateView):
+    model = Hotel
+    #context_object_name = 'alta_docente_form'
+    template_name = 'core/hotel_alta.html'
+    success_url = 'hotel/list'
+    # form_class = AltaDocenteModelForm
+    fields = '__all__'
+
+
