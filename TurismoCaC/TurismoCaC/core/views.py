@@ -261,10 +261,8 @@ def cliente(request):
 
 class ReservasCreateView(CreateView):
     model = Reserva
-    #context_object_name = 'alta_docente_form'
     template_name = 'core/reservas_alta.html'
     success_url = 'listado/reservas'
-    # form_class = AltaDocenteModelForm
     fields = '__all__'
 
 class ReservasListView(ListView):
@@ -273,12 +271,10 @@ class ReservasListView(ListView):
     template_name = 'core/reservas_listado.html'
     ordering = ['fecha_inicio']
 
-class HotelesCreateView(CreateView):
-    model = Hotel
-    #context_object_name = 'alta_docente_form'
-    template_name = 'core/hotel_alta.html'
-    success_url = 'hotel/list'
-    # form_class = AltaDocenteModelForm
-    fields = '__all__'
+# class HotelesCreateView(CreateView):
+#     model = Hotel
+#     template_name = 'core/hotel_alta.html'
+#     success_url = 'hotel/list'
+#     fields = '__all__'
 
 

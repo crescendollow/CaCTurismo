@@ -1,6 +1,7 @@
 from django import forms
-from .models import Reserva
+from .models import Reserva, Hotel
 from django.core.exceptions import ValidationError
+
 
 
 class ClienteForm(forms.Form):
@@ -34,12 +35,15 @@ class AltaReservasModelForm(forms.ModelForm):
 
     # def clean_dni(self):
     #     cuit = self.dni.strip() # Eliminar espacios en blanco al principio y al final
-
     #     if not dni.isdigit():
     #         raise ValidationError("El CUIT debe contener solo dígitos.")
-
     #     if len(dni) != 11:
     #         raise ValidationError("El CUIT debe tener 11 dígitos.")
-        
     #     self.changed_data['dni'] = dni
     #     return self.changed_data['dni']
+
+
+class AltaHotelModelForm(forms.ModelForm):
+# class Meta:
+    model = Hotel
+    fields = '__all__'
