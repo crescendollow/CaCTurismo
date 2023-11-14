@@ -4,7 +4,7 @@ from datetime import datetime
 from django.contrib import messages
 from django.urls import reverse
 from .forms import ClienteForm, ReservasForm, AltaReservasModelForm
-from .models import Reserva
+from .models import Reserva, Hotel
 from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
 
@@ -270,11 +270,18 @@ class ReservasListView(ListView):
     context_object_name = 'listado_reservas'
     template_name = 'core/reservas_listado.html'
     ordering = ['fecha_inicio']
+    
 
-# class HotelesCreateView(CreateView):
-#     model = Hotel
-#     template_name = 'core/hotel_alta.html'
-#     success_url = 'hotel/list'
-#     fields = '__all__'
+class HotelesCreateView(CreateView):
+    model = Hotel
+    template_name = 'core/hotel_alta.html'
+    success_url = 'hotel/list'
+    fields = '__all__'
+
+class HotelesCreateView(CreateView):
+    model = Hotel
+    template_name = 'core/hotel_alta.html'
+    success_url = 'listado/hoteles'
+    fields = '__all__'
 
 
