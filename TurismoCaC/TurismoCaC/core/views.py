@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from datetime import datetime
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from .forms import ClienteForm, ReservasForm, AltaReservasModelForm
 from .models import Reserva, Hotel
@@ -270,7 +271,6 @@ class ReservasListView(ListView):
     context_object_name = 'listado_reservas'
     template_name = 'core/reservas_listado.html'
     ordering = ['fecha_inicio']
-    
 
 class HotelesCreateView(CreateView):
     model = Hotel

@@ -55,6 +55,8 @@ class Reserva(models.Model):
     fecha_salida = models.DateField(verbose_name="Fecha de Salida:",default = "")
     cantidad_personas = models.IntegerField(verbose_name="Cantidad de Personas:", default = 1)
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
-
+    
+    def __str__(self):
+        return self.nombre
 
 
