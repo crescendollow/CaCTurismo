@@ -46,21 +46,27 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{% url 'hotel_alta' %}">Alta Hoteles</a>
-                    </li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{% url 'hotel_alta' %}">Alta Hoteles</a>
+                        </li>
+                    {% endif %}
                     <li class="nav-item">
                         <a class="nav-link active" href="{% url 'hotel_list' %}">Hoteles</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{% url 'reservas' %}">Reservas</a>
-                    </li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{% url 'reservas' %}">Reservas</a>
+                        </li>
+                    {% endif %}   
                     <li class="nav-item">
                         <a class="nav-link active" href="{% url 'reservas_alta' %}">Alta de Reservas</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{% url 'listado_reservas' %}">Listado de Reservas</a>
-                    </li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{% url 'listado_reservas' %}">Listado de Reservas</a>
+                        </li>
+                    {% endif %}
                     <li class="nav-item">
                         <a class="nav-link active" href="{% url 'cliente' %}">Clientes</a>
                     </li>                   
