@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from datetime import datetime
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from .forms import ClienteForm, ReservasForm, AltaReservasModelForm
 from .models import Reserva, Hotel
@@ -192,7 +193,8 @@ def reservas(request):
     }
     return render(request, "core/reservas.html", context)
     
-    # Listado Reservas por Fecha    
+    # Listado Reservas por Fecha  
+  
 def listado_reservas_fecha(request, dia, mes, anio):
     fechabuscar = dia+'/'+mes+'/'+anio
     list = crearreservas()
@@ -266,7 +268,7 @@ class ReservasCreateView(CreateView):
     success_url = 'listado/reservas'
     fields = '__all__'
 
-class ReservasListView(ListView):
+class ReservasListView(LoginRequiredMixin,ListView):
     model = Reserva
     context_object_name = 'listado_reservas'
     template_name = 'core/reservas_listado.html'
@@ -278,10 +280,10 @@ class HotelesCreateView(CreateView):
     success_url = 'hotel/list'
     fields = '__all__'
 
-class HotelesCreateView(CreateView):
-    model = Hotel
-    template_name = 'core/hotel_alta.html'
-    success_url = 'listado/hoteles'
-    fields = '__all__'
+# class HotelesCreateView(CreateView):
+#     model = Hotel
+#     template_name = 'core/hotel_alta.html'
+#     success_url = 'listado/hoteles'
+#     fields = '__all__'
 
 

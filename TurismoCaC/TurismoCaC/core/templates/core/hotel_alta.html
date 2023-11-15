@@ -11,9 +11,9 @@
 
     <div class="formulario_container">
         <div class="formulario">
-            <form method="post" action="{% url 'hotel' %}">
+            <form method="post" action="{% url 'hotel_alta' %}">
                 {% csrf_token %}
-                {{ Hoteles_form.as_p }}
+                {{ form.as_p }}
                 <input class="btn btn-primary" type="submit">
             </form>    
         </div>
