@@ -270,7 +270,7 @@ class ReservasCreateView(CreateView):
 
 class ReservasListView(LoginRequiredMixin,ListView):
     model = Reserva
-    context_object_name = 'listado_reservas'
+    context_object_name = 'reservas_listado'
     template_name = 'core/reservas_listado.html'
     ordering = ['fecha_inicio']
 
@@ -280,10 +280,10 @@ class HotelesCreateView(CreateView):
     success_url = 'hotel/list'
     fields = '__all__'
 
-# class HotelesCreateView(CreateView):
-#     model = Hotel
-#     template_name = 'core/hotel_alta.html'
-#     success_url = 'listado/hoteles'
-#     fields = '__all__'
+class HotelesListView(LoginRequiredMixin,ListView):
+    model = Hotel
+    context_object_name = 'hotel'
+    template_name = 'core/hotel_listado.html'
+    ordering = ['fecha_inicio']
 
 

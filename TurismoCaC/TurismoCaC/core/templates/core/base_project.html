@@ -67,9 +67,11 @@
                             <a class="nav-link active" href="{% url 'reservas_listado' %}">Listado de Reservas</a>
                         </li>
                     {% endif %}
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{% url 'cliente' %}">Clientes</a>
-                    </li>                   
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{% url 'cliente' %}">Cliente</a>
+                        </li> 
+                    {% endif %}                  
                 </ul>
             </div>
         </div>

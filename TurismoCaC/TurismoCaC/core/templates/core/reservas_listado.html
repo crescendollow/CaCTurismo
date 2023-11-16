@@ -9,7 +9,7 @@
 {% block content %}
     <h2>2023</h2>
     <ul>
-        {% for nombre_reservas in listado_reservas %}
+        {% for nombre_reservas in reservas_listado %}
             <li>
                 <p>{{ nombre_reservas.username }}</p>
                 <p>{{ nombre_reservas.nombre | title }}</p>
