@@ -14,7 +14,7 @@
             <form method="post" action="{% url 'hotel_alta' %}">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <input class="btn btn-primary" type="submit">
+                <input type="submit" class="btn btn-primary" >
             </form>    
         </div>
     </div>

@@ -8,11 +8,14 @@
 {% block title %}{% endblock %}
 {% block section_title %}Completa el siguiente Formulario{% endblock %}
 {% block content %}
-
-    <form method="post" action="{% url 'cliente' %}">
-        {% csrf_token %}
-        {{ cliente_form.as_p }}
-        <input type="submit" class="btn btn-primary">
-    </form>
+    <div class="formulario_container">
+        <div class="formulario">
+            <form method="post" action="{% url 'cliente' %}">
+                {% csrf_token %}
+                {{ cliente_form.as_p }}
+                <input type="submit" class="btn btn-primary">
+            </form>
+        </div>
+    </div>
 
 {% endblock %}
