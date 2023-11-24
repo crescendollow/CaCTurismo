@@ -22,17 +22,24 @@
     </ul> 
     {% endif %} 
     <header>
-        <div>
-            <h1>Gestion Hotelera</h1>
-            <h2>{% block section_title %} {% endblock %}</h2>
-        </div>
-        <div class="actions">
-            {% if not user.is_authenticated %}
-                <a href="{% url 'login' %}">Login</a>
-            {% else %}
-                <p>Bienvenid@ <b>{{user.username}}</b></p>
-                <a class="logout" href="{% url 'logout' %}">Logout</a>
-            {% endif %}
+        <div class="card text-center">
+            <div class="card-header secondaryColor">
+                Consegui hoy mismo tu reserva hotelera al mejor precio
+            </div>
+            <div class="card-body mainColor">
+                <h1 class="card-title">Gestion Hotelera</h1>
+                <p class="card-text">{% block section_title %} {% endblock %}</p>
+            </div>
+            <div class="card terciaryColor mb-3">
+                <div class="card-body actions">
+                    {% if not user.is_authenticated %}
+                    <a href="{% url 'login' %}">Iniciar Sesion</a>
+                    {% else %}
+                    <p>Bienvenid@ <b>{{user.username}}</b></p>
+                    <a class="logout" href="{% url 'logout' %}">Cerrar Sesion</a>
+                    {% endif %}
+                </div>
+            </div>
         </div>
     </header>
 
@@ -40,7 +47,7 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="container-fluid">
+        <div class="container-fluid mainColor">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
@@ -81,7 +88,7 @@
         {% block content %}{% endblock %}
     </main>
 
-    <footer>
+    <footer class="mainColor">
         {% include "core/footer.html" %}
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

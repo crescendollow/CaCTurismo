@@ -18,3 +18,15 @@
     margin: auto;
     font-weight: bold;
 }
+
+.mainColor{
+    background-color: #D5BDAF
+}
+
+.secondaryColor{
+    background-color: #E3D5CA
+}
+
+.terciaryColor{
+    background-color: #F5EBE0;
+}

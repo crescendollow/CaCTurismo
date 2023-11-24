@@ -11,10 +11,21 @@
 }
 
 .formulario{
-    border: 1px solid black;
     max-width: fit-content;
     padding: 1.5rem;
-    background-color: #D6CCC2;
     margin: auto;
     font-weight: bold;
+    border-radius: 5px;
+}
+
+.mainColor{
+    background-color: #D5BDAF
+}
+
+.secondaryColor{
+    background-color: #E3D5CA
+}
+
+.terciaryColor{
+    background-color: #F5EBE0;
 }

@@ -7,20 +7,19 @@
 {% block title %}Login{% endblock %}
 {% block section_title %}Login{% endblock %}
 {% block content %}
-    <form method="post" action="{% url 'login' %}">
+    <form class="secondaryColor p-2 w-25 container-fluid m-auto" method="post" action="{% url 'login' %}">
         {% csrf_token %}
-        <table class="login">
-        <tr>
-            <td>{{ form.username.label_tag }}</td>
-            <td>{{ form.username }}</td>
-        </tr>
-        <tr>
-            <td>{{ form.password.label_tag }}</td>
-            <td>{{ form.password }}</td>
-        </tr>
-        </table>
-        
-        <input type="submit" value="login" class="btn btn-primary">
-        <input type="hidden" name="next" value="{{ next }}">
+        <div class="mb-3 text-center">
+            <label for="emailHelp" class="form-label">{{ form.username.label_tag }}</label>
+            <div id="emailHelp" class="form-text">{{ form.username }}</div>
+        </div>
+        <div class="mb-3 text-center">
+            <label for="pass" class="form-label">{{ form.password.label_tag }}</label>
+            <div id="pass" class="form-text">{{ form.password }}</div>
+        </div>
+        <div class="text-center">
+            <input  class="btn btn-primary w-25" type="submit" value="Login">
+            <input type="hidden" name="next" value="{{ next }}">    
+        </div>
     </form>
 {% endblock %}

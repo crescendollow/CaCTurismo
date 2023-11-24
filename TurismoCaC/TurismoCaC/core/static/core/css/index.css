@@ -9,17 +9,21 @@
     padding: 0;
 }
 
+.mainColor{
+    background-color: #D5BDAF
+}
+
+.secondaryColor{
+    background-color: #E3D5CA
+}
+
+.terciaryColor{
+    background-color: #F5EBE0;
+}
+
 body {
     font-family: Arial, sans-serif;
     /* background-color: #50db2e; */
-}
-
-main {
-    background-image: url(https://www.hotel-argentino.com.ar/wp-content/uploads/2019/04/carr00-1.png);
-    background-size:cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    min-height: 90vh;
 }
 
 header {

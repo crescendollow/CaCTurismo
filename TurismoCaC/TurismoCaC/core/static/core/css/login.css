@@ -3,17 +3,15 @@
     margin: 0;
     box-sizing: border-box;
 }
-.login_container{
-    display: inline-block;
-    width: 100%;
-    padding: 3rem;
+
+.mainColor{
+    background-color: #D5BDAF
 }
 
-.login{
-    border: 1px solid black;
-    max-width: fit-content;
-    padding: 1.5rem;
-    background-color: #D6CCC2;
-    margin: left;
-    font-weight: bold;
+.secondaryColor{
+    background-color: #E3D5CA
+}
+
+.terciaryColor{
+    background-color: #F5EBE0;
 }
