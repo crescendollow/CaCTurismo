@@ -10,6 +10,7 @@ urlpatterns = [
 
 
     path('hotel/list', views.hotel_list, name='hotel_list'),
+
     re_path(r'listado/reservas/(?P<dia>[0-9]{2})/(?P<mes>[0-9]{2})/(?P<anio>[0-9]{4})/$', views.listado_reservas_fecha, name='listado_reservas_fecha'),
     path('listado/reservas', views.listado_reservas, name='listado_reservas'),
     path('cliente', views.cliente, name="cliente"),
@@ -18,5 +19,6 @@ urlpatterns = [
     path('alta/reservas', views.ReservasCreateView.as_view(), name="reservas_alta"),
     path('alta/listado/reservas', views.ReservasListView.as_view(), name="reservas_listado"),
     path('alta/hotel', views.HotelesCreateView.as_view(), name="hotel_alta"),
+    path('alta/hotel/listado', views.HotelesListView.as_view(), name="listado_hotel"),
     
 ]

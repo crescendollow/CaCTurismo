@@ -277,13 +277,13 @@ class ReservasListView(LoginRequiredMixin,ListView):
 class HotelesCreateView(LoginRequiredMixin,CreateView):
     model = Hotel
     template_name = 'core/hotel_alta.html'
-    success_url = 'hotel/list'
+    success_url = 'hotel/listado'
     fields = '__all__'
 
-class HotelesListView(LoginRequiredMixin,ListView):
+class HotelesListView(ListView):
     model = Hotel
-    context_object_name = 'hotel'
-    template_name = 'core/hotel_listado.html'
-    ordering = ['fecha_inicio']
+    context_object_name = 'listado_hotel'
+    template_name = 'core/listado_hotel.html'
+    ordering = ['nombre']
 
 

@@ -1,0 +1,24 @@
+{% extends "core/base_project.html" %}
+{% load static %}
+{% block extra_css%}
+    <link rel="stylesheet" href="{% static 'core/css/hotel_listado.css' %}">
+{%endblock%}
+
+{% block title %}Listado Hoteles{% endblock %}
+{% block section_title %}Listado Hoteles{% endblock %}
+{% block content %}
+    <h2>2023</h2>
+    <ul>
+        {% for nombre_hoteles in listado_hotel %}
+            <li>
+                <p>{{ nombre_hoteles.nombre | title }}</p>
+                <p>{{ nombre_hoteles.descripcion}}</p>
+                <p>{{ nombre_hoteles.estrellas}}</p>
+                <p>{{ nombre_hoteles.desayuno}}</p>
+            </li>
+        {% empty %}
+            <p>Sin Hoteles registrados</p>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
