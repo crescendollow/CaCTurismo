@@ -42,8 +42,7 @@ class Hotel(models.Model):
     descripcion = models.CharField(max_length=1000, null=True, verbose_name="Descripcion del Hotel")
     estrellas = models.IntegerField(verbose_name="Estrellas:")
     desayuno = models.BooleanField(verbose_name="Desayuno:", default=False)
-    fecha_reserva = models.DateField(default=timezone.now)
-    numero_reserva = models.IntegerField(default=random.randint(100000, 999999))
+
 
     def __str__(self):
         return self.nombre
@@ -54,6 +53,8 @@ class Reserva(models.Model):
     fecha_inicio = models.DateField(verbose_name="Fecha de inicio:")
     fecha_salida = models.DateField(verbose_name="Fecha de Salida:",default = "")
     cantidad_personas = models.IntegerField(verbose_name="Cantidad de Personas:", default = 1)
+    numero_reserva = models.IntegerField(default=random.randint(100000, 999999))
+    fecha_reserva = models.DateField(default=timezone.now)
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
     
     def __str__(self):
