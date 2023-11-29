@@ -285,5 +285,3 @@ class HotelesListView(ListView):
     context_object_name = 'listado_hotel'
     template_name = 'core/listado_hotel.html'
     ordering = ['nombre']
-
-

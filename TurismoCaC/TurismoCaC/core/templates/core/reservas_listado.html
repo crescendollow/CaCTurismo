@@ -7,25 +7,25 @@
 {% block title %}Listado Reservas{% endblock %}
 {% block section_title %}Listado Reservas{% endblock %}
 {% block content %}
-    <h2>2023</h2>
-    <ul>
         {% for nombre_reservas in reservas_listado %}
-            <li>
-                <p>{{ nombre_reservas.username }}</p>
-                <p>{{ nombre_reservas.nombre | title }}</p>
-                <p>{{ nombre_reservas.fecha_inicio}}</p>
-                <p>{{ nombre_reservas.fecha_salida}}</p>
-                <p>{{ nombre_reservas.cantidad_personas}}</p>
-                <p>{{ nombre_reservas.hotel}}</p>
-            </li>
+            <div class="card mb-3" style="max-width: 540px; display: inline-block; vertical-align: top; margin-top: 20px; margin-left: 20px;">
+                <div class="row g-0">
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ nombre_reservas.username }}</h5>
+                            <p class="card-text">Cliente: {{ nombre_reservas.nombre }}</p>
+                            <p class="card-text">Fecha Inicio de Reserva: {{ nombre_reservas.fecha_inicio }}</p>
+                            <p class="card-text">Fecha Fin de Reserva: {{ nombre_reservas.fecha_salida }}</p>
+                            <p class="card-text">Fecha Reservacion: {{ nombre_reservas.fecha_reserva }}</p>
+                            <p class="card-text">Cantidad de personas: {{ nombre_reservas.cantidad_personas }}</p>
+                            <p class="card-text">Hotel de la Reserva: {{ nombre_reservas.hotel }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         {% empty %}
-            <p>Sin Reservas registrados</p>
+        <div class="alert alert-danger text-center" role="alert">
+            No hay reservas!
+        </div>
         {% endfor %}
-    </ul>
-
-    <!-- {% if listado_reservas.count > 0 %}
-        <p>cantidad de d registrados: {{listado_docentes.count}}</p>
-    {% else %}
-        <p>No hay docentes registrados</p>
-    {% endif %} -->
 {% endblock %}

@@ -7,18 +7,22 @@
 {% block title %}Listado Hoteles{% endblock %}
 {% block section_title %}Listado Hoteles{% endblock %}
 {% block content %}
-    <h2>2023</h2>
-    <ul>
         {% for nombre_hoteles in listado_hotel %}
-            <li>
-                <p>{{ nombre_hoteles.nombre | title }}</p>
-                <p>{{ nombre_hoteles.descripcion}}</p>
-                <p>{{ nombre_hoteles.estrellas}}</p>
-                <p>{{ nombre_hoteles.desayuno}}</p>
-            </li>
+            <div class="card mb-3" style="max-width: 540px; display: inline-block; vertical-align: top; margin-top: 20px; margin-left: 20px;">
+                <div class="row g-0">
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ nombre_hoteles.nombre }}</h5>
+                            <p class="card-text">Descripcion del Hotel: {{ nombre_hoteles.descripcion }}</p>
+                            <p class="card-text">Hotel {{ nombre_hoteles.estrellas }} estrellas</p>
+                            <p class="card-text">Ofrece desayunos: {{ nombre_hoteles.desayuno }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         {% empty %}
-            <p>Sin Hoteles registrados</p>
+        <div class="alert alert-danger text-center" role="alert">
+            Sin hoteles registrados!
+        </div>
         {% endfor %}
-    </ul>
-
 {% endblock %}
