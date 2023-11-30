@@ -3,13 +3,6 @@ from django.core.exceptions import ValidationError
 from django.utils import timezone
 import random
 
-# Create your models here.
-
-# class reservas(Persona):
-#     fecha_reservas = models.DateField(null=False, verbose_name="fecha_reservas")
-#     fecha_salida = models.DateField(null=False, verbose_name="fecha_salida")
-#     cant_personas = models.IntegerField(verbose_name="cant_personas")
-#     mensaje =  models.CharField(max_length=150, null=True, verbose_name="mensaje")
 class Persona(models.Model):
     nombre = models.CharField(max_length=30, verbose_name="Nombre")
     apellido = models.CharField(max_length=30, verbose_name="Apellido")

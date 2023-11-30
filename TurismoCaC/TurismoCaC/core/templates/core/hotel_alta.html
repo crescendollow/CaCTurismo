@@ -8,7 +8,7 @@
 {% block title %}Alta de Hoteles{% endblock %}
 {% block section_title %}Completá el siguiente formulario{% endblock %}
 {% block content %}
-    <form class="formulario_container">
+    <div class="formulario_container">
         <div class="formulario terciaryColor">
             <form method="post" action="{% url 'hotel_alta' %}">
                 {% csrf_token %}
@@ -16,5 +16,5 @@
                 <input type="submit" class="btn btn-primary" >
             </form>    
         </div>
-    </form>
+    </div>
 {% endblock %}

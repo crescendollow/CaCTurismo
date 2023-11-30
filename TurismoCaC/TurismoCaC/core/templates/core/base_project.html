@@ -61,11 +61,6 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="{% url 'listado_hotel' %}">Listado Hoteles</a>
                     </li>
-                    <!-- {% if user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link active" href="{% url 'reservas' %}">Reservas</a>
-                        </li>
-                    {% endif %}    -->
                     <li class="nav-item">
                         <a class="nav-link active" href="{% url 'reservas_alta' %}">Alta de Reservas</a>
                     </li>
@@ -74,11 +69,6 @@
                             <a class="nav-link active" href="{% url 'reservas_listado' %}">Listado de Reservas</a>
                         </li>
                     {% endif %}
-                    {% if user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link active" href="{% url 'cliente' %}">Usuarios</a>
-                        </li> 
-                    {% endif %}                  
                 </ul>
             </div>
         </div>

@@ -8,17 +8,7 @@
 {% block section_title %}Alta de Reservas{% endblock %}
 {% block content %}
     <h3>Datos nueva Reserva</h3>
-
-    <!-- <div class="formulario_container">
-        <div class="formulario">
-            <form method="post" action="{% url 'reservas' %}">
-                {% csrf_token %}
-                {{ Reservas_form.as_p }}
-                <input class="btn btn-primary" type="submit">
-            </form>    
-        </div>
-    </div> -->
-
+    
     <div class="formulario_container">
         <div class="formulario">
             <form method="post" action="{% url 'reservas_alta' %}">
